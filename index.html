@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rithubaran G — Aspiring Software & AI Engineer focused on Python, AI/LLM, RAG, workflow automation, and practical B2B software solutions." />
+  <meta name="author" content="Rithubaran G" />
+  <title>Rithubaran G | Software & AI Engineer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f6f2;
+      --ink: #111110;
+      --muted: #77736d;
+      --accent: #2a5cff;
+      --line: #dedbd4;
+      --card: #fff;
+      --soft: #eeece6;
+      --font-display: "DM Serif Display", serif;
+      --font-mono: "DM Mono", monospace;
+      --max: 1240px;
+    }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    a { color: inherit; }
+    button, input, textarea { font: inherit; }
+    ::selection { background: var(--ink); color: var(--bg); }
+
+    /* NAV */
+    nav {
+      position: fixed; inset: 0 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 18px 48px;
+      background: rgba(247,246,242,.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 20px;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: .1em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    .menu-btn { display: none; background: none; border: 0; cursor: pointer; font-size: 22px; }
+
+    /* GLOBAL */
+    section { padding: 110px 48px; border-bottom: 1px solid var(--line); }
+    .container { max-width: var(--max); margin: auto; }
+    .section-label {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 55px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .section-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+    h2 {
+      font-family: var(--font-display);
+      font-size: clamp(36px, 5vw, 60px);
+      line-height: 1.05;
+      letter-spacing: -.025em;
+      margin-bottom: 30px;
+    }
+    .eyebrow {
+      color: var(--accent);
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 13px 24px;
+      background: var(--ink);
+      color: var(--bg);
+      border: 1px solid var(--ink);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: transform .2s, background .2s;
+    }
+    .btn-primary:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+    .btn-ghost {
+      display: inline-block;
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 3px;
+      font-size: 11px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      transition: color .2s, border-color .2s;
+    }
+    .btn-ghost:hover { color: var(--ink); border-color: var(--ink); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+      overflow: hidden;
+      padding-top: 150px;
+    }
+    .hero-content { position: relative; z-index: 2; max-width: var(--max); width: 100%; margin: auto; }
+    .hero-index {
+      position: absolute; right: 48px; top: 130px;
+      color: var(--muted);
+      font-size: 10px; letter-spacing: .12em;
+      writing-mode: vertical-rl;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      max-width: 1000px;
+      margin-top: 20px;
+      font-family: var(--font-display);
+      font-size: clamp(58px, 10vw, 132px);
+      line-height: .9;
+      letter-spacing: -.04em;
+      animation: fadeUp .7s .15s both;
+    }
+    .hero h1 em { color: var(--muted); font-weight: 400; }
+    .hero-sub {
+      max-width: 650px;
+      margin-top: 35px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.9;
+      animation: fadeUp .7s .3s both;
+    }
+    .hero-cta { display: flex; gap: 20px; align-items: center; margin-top: 38px; animation: fadeUp .7s .45s both; }
+    .hero-bg-num {
+      position: absolute; right: -20px; bottom: -50px;
+      color: var(--line);
+      font-family: var(--font-display);
+      font-size: 32vw;
+      line-height: .8;
+      user-select: none;
+      pointer-events: none;
+    }
+    .hero-meta {
+      display: flex; gap: 30px; flex-wrap: wrap;
+      margin-top: 70px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .hero-meta span::before { content: "•"; color: var(--accent); margin-right: 8px; }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 90px; }
+    .about-text p { max-width: 680px; margin-bottom: 19px; color: var(--muted); line-height: 1.95; }
+    .about-text strong { color: var(--ink); font-weight: 500; }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1px; background: var(--line); border: 1px solid var(--line);
+      align-self: start;
+    }
+    .stat { padding: 30px 26px; background: var(--bg); min-height: 125px; }
+    .stat-num { font-family: var(--font-display); font-size: 38px; line-height: 1; margin-bottom: 9px; }
+    .stat-label { color: var(--muted); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--line); border: 1px solid var(--line);
+    }
+    .skill-group { background: var(--bg); padding: 35px 30px; }
+    .skill-group-title { margin-bottom: 18px; color: var(--accent); font-size: 10px; letter-spacing: .13em; text-transform: uppercase; }
+    .skill-list { list-style: none; }
+    .skill-list li {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 8px 0; border-bottom: 1px solid var(--line);
+      color: var(--muted); font-size: 12px;
+      transition: color .2s;
+    }
+    .skill-list li:last-child { border-bottom: 0; }
+    .skill-list li:hover { color: var(--ink); }
+    .skill-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--line); }
+    .skill-list li:hover .skill-dot { background: var(--accent); }
+
+    /* EXPERIENCE / EDUCATION */
+    .timeline { border-top: 1px solid var(--line); }
+    .timeline-item {
+      display: grid; grid-template-columns: 210px 1fr;
+      gap: 55px; padding: 40px 0; border-bottom: 1px solid var(--line);
+    }
+    .timeline-meta { color: var(--muted); font-size: 10px; }
+    .timeline-company { margin-top: 5px; color: var(--accent); font-size: 12px; }
+    .timeline-title { font-family: var(--font-display); font-size: 25px; line-height: 1.2; margin-bottom: 12px; }
+    .timeline-desc { max-width: 750px; color: var(--muted); font-size: 12px; line-height: 1.9; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 16px; }
+    .tag {
+      padding: 4px 9px; border: 1px solid var(--line);
+      color: var(--muted); font-size: 9px;
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1px; background: var(--line); border: 1px solid var(--line);
+    }
+    .project-card {
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
+      min-height: 350px; padding: 35px;
+      background: var(--bg);
+      transition: background .25s, transform .25s;
+    }
+    .project-card:hover { background: var(--card); }
+    .project-num { color: var(--line); font-size: 10px; letter-spacing: .12em; margin-bottom: 65px; }
+    .project-card:hover .project-num { color: var(--accent); }
+    .project-title { font-family: var(--font-display); font-size: 29px; line-height: 1.15; margin-bottom: 14px; }
+    .project-desc { flex: 1; max-width: 570px; color: var(--muted); font-size: 12px; line-height: 1.85; }
+    .project-link {
+      align-self: flex-start; margin-top: 25px;
+      color: var(--muted); text-decoration: none;
+      font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+      transition: color .2s;
+    }
+    .project-link::after { content: " →"; }
+    .project-link:hover { color: var(--accent); }
+    .project-note { margin-top: 9px; color: var(--muted); font-size: 10px; }
+
+    /* ACHIEVEMENTS */
+    .achievement-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .achievement { min-height: 190px; padding: 30px; background: var(--bg); }
+    .achievement-number { color: var(--accent); font-size: 10px; letter-spacing: .12em; }
+    .achievement h3 { margin: 30px 0 9px; font-family: var(--font-display); font-size: 22px; line-height: 1.2; }
+    .achievement p { color: var(--muted); font-size: 11px; line-height: 1.7; }
+
+    /* CONTACT */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; }
+    .contact-left p { max-width: 520px; color: var(--muted); line-height: 1.9; }
+    .contact-links { display: flex; flex-direction: column; gap: 13px; margin-top: 35px; }
+    .contact-link {
+      display: flex; gap: 15px; align-items: center;
+      color: var(--muted); text-decoration: none; font-size: 12px;
+      transition: color .2s;
+    }
+    .contact-link:hover { color: var(--ink); }
+    .contact-link-label { width: 60px; color: var(--line); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+    .contact-link:hover .contact-link-label { color: var(--accent); }
+    .contact-form { display: flex; flex-direction: column; gap: 22px; }
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-label { color: var(--muted); font-size: 9px; letter-spacing: .13em; text-transform: uppercase; }
+    .form-input, .form-textarea {
+      width: 100%; padding: 11px 0;
+      border: 0; border-bottom: 1px solid var(--line);
+      outline: 0; background: transparent; color: var(--ink);
+      resize: vertical; transition: border-color .2s;
+    }
+    .form-input:focus, .form-textarea:focus { border-color: var(--ink); }
+    .form-textarea { min-height: 110px; }
+    .form-input::placeholder, .form-textarea::placeholder { color: #bbb7af; }
+
+    /* FOOTER */
+    footer {
+      display: flex; justify-content: space-between; gap: 20px;
+      padding: 30px 48px; color: var(--muted); font-size: 9px; letter-spacing: .06em;
+    }
+
+    /* REVEAL */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .nav-links {
+        position: absolute; top: 65px; left: 0; right: 0;
+        display: none; flex-direction: column; gap: 0;
+        padding: 10px 24px 20px; background: var(--bg); border-bottom: 1px solid var(--line);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; padding: 10px 0; }
+      .menu-btn { display: block; }
+      section { padding: 80px 24px; }
+      .hero { padding-top: 120px; min-height: 92vh; }
+      .hero-index { right: 24px; top: 100px; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 12px; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .achievement-grid { grid-template-columns: 1fr; }
+      footer { padding: 25px 24px; flex-direction: column; }
+    }
+
+    @media (max-width: 600px) {
+      body { font-size: 13px; }
+      .hero h1 { font-size: clamp(54px, 17vw, 82px); }
+      .hero-sub { font-size: 12px; }
+      .hero-cta { flex-wrap: wrap; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+      .stat { padding: 22px 18px; }
+      .stat-num { font-size: 31px; }
+      .project-card { min-height: 310px; padding: 28px; }
+      .project-num { margin-bottom: 45px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <nav>
+    <a href="#top" class="nav-logo">Rithubaran G</a>
+    <button class="menu-btn" aria-label="Open menu" aria-expanded="false">☰</button>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-index">2026 · Final-Year CSE Developer</div>
+      <div class="hero-content">
+        <div class="eyebrow">Available for internships · freelance · collaborations</div>
+        <h1>Building <em>practical</em><br />software & AI.</h1>
+        <p class="hero-sub">
+          I'm Rithubaran G, a final-year Computer Science Engineering student focused on
+          Python, AI/LLM applications, RAG, workflow automation, and practical software
+          solutions for real-world problems.
+        </p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn-primary">View Projects</a>
+          <a href="#contact" class="btn-ghost">Let's Connect</a>
+        </div>
+        <div class="hero-meta">
+          <span>Python Developer</span>
+          <span>AI & LLM</span>
+          <span>Workflow Automation</span>
+          <span>Namakkal, Tamil Nadu</span>
+        </div>
+      </div>
+      <div class="hero-bg-num">01</div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <div class="section-label">01 — About</div>
+        <div class="about-grid reveal">
+          <div class="about-text">
+            <h2>A developer focused on solving real problems.</h2>
+            <p>
+              I'm a <strong>final-year Computer Science Engineering student</strong>
+              with hands-on experience in Python, AI/LLM applications, RAG,
+              LangChain, SQL, and workflow automation.
+            </p>
+            <p>
+              I enjoy turning real-world requirements into useful software —
+              from business dashboards and billing systems to AI-powered
+              document applications and automated workflows.
+            </p>
+            <p>
+              Through <strong>QueDoc Solutions</strong>, my independent IT
+              service and consultancy venture, I work on practical hardware
+              and software solutions for businesses and individuals.
+            </p>
+            <p>
+              I'm currently seeking <strong>Software Development or AI/ML
+              internship opportunities</strong> where I can contribute to
+              real projects, learn from an engineering team, and grow as a
+              developer.
+            </p>
+          </div>
+
+          <div class="about-stats">
+            <div class="stat">
+              <div class="stat-num">2027</div>
+              <div class="stat-label">Expected Graduation</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">6.68</div>
+              <div class="stat-label">Current CGPA</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">AI</div>
+              <div class="stat-label">Primary Focus</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">B2B</div>
+              <div class="stat-label">Solution Mindset</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-label">02 — Skills</div>
+        <div class="skills-grid reveal">
+          <div class="skill-group">
+            <div class="skill-group-title">Programming</div>
+            <ul class="skill-list">
+              <li>Python <span class="skill-dot"></span></li>
+              <li>JavaScript <span class="skill-dot"></span></li>
+              <li>SQL <span class="skill-dot"></span></li>
+              <li>HTML / CSS <span class="skill-dot"></span></li>
+              <li>Git / GitHub <span class="skill-dot"></span></li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-title">AI / LLM</div>
+            <ul class="skill-list">
+              <li>RAG <span class="skill-dot"></span></li>
+              <li>LangChain <span class="skill-dot"></span></li>
+              <li>LLM Integration <span class="skill-dot"></span></li>
+              <li>Prompt Engineering <span class="skill-dot"></span></li>
+              <li>Embeddings / Vector DBs <span class="skill-dot"></span></li>
+              <li>AI Agents <span class="skill-dot"></span></li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-title">Automation</div>
+            <ul class="skill-list">
+              <li>n8n <span class="skill-dot"></span></li>
+              <li>Zapier <span class="skill-dot"></span></li>
+              <li>Workflow Automation <span class="skill-dot"></span></li>
+              <li>API Integrations <span class="skill-dot"></span></li>
+              <li>Business Process Automation <span class="skill-dot"></span></li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-title">Databases</div>
+            <ul class="skill-list">
+              <li>MySQL <span class="skill-dot"></span></li>
+              <li>MongoDB <span class="skill-dot"></span></li>
+              <li>Database Design <span class="skill-dot"></span></li>
+              <li>SQL Queries <span class="skill-dot"></span></li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-title">Backend</div>
+            <ul class="skill-list">
+              <li>REST APIs <span class="skill-dot"></span></li>
+              <li>FastAPI <span class="skill-dot"></span></li>
+              <li>Django <span class="skill-dot"></span></li>
+              <li>Web Development <span class="skill-dot"></span></li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <div class="skill-group-title">Hardware & IT</div>
+            <ul class="skill-list">
+              <li>Laptop Diagnostics & Repair <span class="skill-dot"></span></li>
+              <li>System Building <span class="skill-dot"></span></li>
+              <li>Motherboard Repair <span class="skill-dot"></span></li>
+              <li>OS Installation <span class="skill-dot"></span></li>
+              <li>System Maintenance <span class="skill-dot"></span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="container">
+        <div class="section-label">03 — Experience</div>
+        <div class="timeline">
+
+          <div class="timeline-item reveal">
+            <div class="timeline-meta">
+              Independent
+              <div class="timeline-company">QueDoc Solutions · Namakkal</div>
+            </div>
+            <div>
+              <div class="timeline-title">Founder & IT Consultant</div>
+              <div class="timeline-desc">
+                Operate an independent IT service and consultancy banner providing
+                end-to-end hardware and software solutions. Consult with clients
+                to design, purchase, and assemble custom computer systems based
+                on workload requirements and budgets. Perform hardware diagnostics,
+                motherboard repairs, system maintenance, and operating system
+                installations.
+              </div>
+              <div class="tags">
+                <span class="tag">IT Consulting</span>
+                <span class="tag">Hardware</span>
+                <span class="tag">Python</span>
+                <span class="tag">Business Solutions</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item reveal">
+            <div class="timeline-meta">
+              2023 — 2027
+              <div class="timeline-company">Muthayammal Engineering College</div>
+            </div>
+            <div>
+              <div class="timeline-title">B.E. Computer Science & Engineering</div>
+              <div class="timeline-desc">
+                Pursuing a Bachelor of Engineering in Computer Science and
+                Engineering under Anna University. Building practical development
+                skills through software projects, AI/LLM applications,
+                automation, and problem solving.
+              </div>
+              <div class="tags">
+                <span class="tag">Anna University</span>
+                <span class="tag">6.68 CGPA</span>
+                <span class="tag">Final Year</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-label">04 — Projects</div>
+        <div class="projects-grid reveal">
+
+          <article class="project-card">
+            <div class="project-num">001</div>
+            <div class="project-title">Cattle Feed Store CRM & Billing System</div>
+            <div class="project-desc">
+              A web-based CRM and billing management system developed to digitize
+              daily operations of a cattle feed store. Includes customer/farmer
+              management, inventory tracking, billing, credit management, sales
+              reports, invoice generation, CSV import/export, stock alerts,
+              audit/activity logs, invoice printing, and WhatsApp sharing.
+            </div>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">REST APIs</span>
+              <span class="tag">Database</span>
+              <span class="tag">Render</span>
+            </div>
+            <div class="project-note">Deployed web application</div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-num">002</div>
+            <div class="project-title">Legal Document Intelligence</div>
+            <div class="project-desc">
+              An AI-powered legal document application designed to upload and
+              analyze documents, extract useful information, generate summaries,
+              detect important flags, and provide document-focused AI interaction
+              using retrieval-augmented generation concepts.
+            </div>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">RAG</span>
+              <span class="tag">LangChain</span>
+              <span class="tag">LLM</span>
+            </div>
+            <div class="project-note">AI / document intelligence project</div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-num">003</div>
+            <div class="project-title">Library Management System</div>
+            <div class="project-desc">
+              An end-to-end management system designed to automate book inventory,
+              student check-outs, and tracking while maintaining structured
+              database records for library operations.
+            </div>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">Database</span>
+            </div>
+            <div class="project-note">Academic software project</div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-num">004</div>
+            <div class="project-title">AI Workflow Automation</div>
+            <div class="project-desc">
+              Workflow automation experiments connecting applications and APIs
+              to reduce repetitive business tasks, process data, and introduce
+              AI-powered actions into practical workflows.
+            </div>
+            <div class="tags">
+              <span class="tag">n8n</span>
+              <span class="tag">Zapier</span>
+              <span class="tag">AI Agents</span>
+              <span class="tag">APIs</span>
+            </div>
+            <div class="project-note">Automation & integration work</div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="container">
+        <div class="section-label">05 — Education</div>
+        <div class="timeline reveal">
+
+          <div class="timeline-item">
+            <div class="timeline-meta">
+              2023 — 2027
+              <div class="timeline-company">Anna University</div>
+            </div>
+            <div>
+              <div class="timeline-title">B.E. Computer Science & Engineering</div>
+              <div class="timeline-desc">
+                Muthayammal Engineering College (Autonomous), Rasipuram.
+                Currently pursuing the degree with a 6.68 CGPA.
+              </div>
+              <div class="tags">
+                <span class="tag">Pursuing</span>
+                <span class="tag">6.68 CGPA</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-meta">
+              2023
+              <div class="timeline-company">State Board</div>
+            </div>
+            <div>
+              <div class="timeline-title">Higher Secondary Certificate</div>
+              <div class="timeline-desc">Malar Metric Hr Sec School, Paramathi Velur · 54%</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-meta">
+              2021
+              <div class="timeline-company">State Board</div>
+            </div>
+            <div>
+              <div class="timeline-title">Secondary School Leaving Certificate</div>
+              <div class="timeline-desc">Malar Metric Hr Sec School, Paramathi Velur · 100%</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements">
+      <div class="container">
+        <div class="section-label">06 — Achievements</div>
+        <div class="achievement-grid reveal">
+
+          <article class="achievement">
+            <div class="achievement-number">01</div>
+            <h3>Smart India Hackathon</h3>
+            <p>1st Prize for project presentation at Muthayammal Engineering College (Autonomous).</p>
+          </article>
+
+          <article class="achievement">
+            <div class="achievement-number">02</div>
+            <h3>Inspire '26</h3>
+            <p>2nd Prize for Ideathon at Excel Engineering College (Autonomous).</p>
+          </article>
+
+          <article class="achievement">
+            <div class="achievement-number">03</div>
+            <h3>NPTEL — Edge Computing</h3>
+            <p>69% score and Elite category certification in the NPTEL Edge Computing course.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-label">07 — Contact</div>
+        <div class="contact-grid reveal">
+
+          <div class="contact-left">
+            <h2>Let's build something useful.</h2>
+            <p>
+              I'm open to software development and AI/ML internships, freelance
+              projects, and collaborations involving Python, AI, automation,
+              backend development, and practical business software.
+            </p>
+
+            <div class="contact-links">
+              <a href="mailto:rithubaran1995@gmail.com" class="contact-link">
+                <span class="contact-link-label">Email</span>
+                rithubaran1995@gmail.com
+              </a>
+
+              <a href="tel:+918072416827" class="contact-link">
+                <span class="contact-link-label">Phone</span>
+                +91 80724 16827
+              </a>
+
+              <a href="https://github.com/rithubaran1995-eng" target="_blank" rel="noopener noreferrer" class="contact-link">
+                <span class="contact-link-label">GitHub</span>
+                github.com/rithubaran1995-eng
+              </a>
+
+              <a href="https://www.linkedin.com/in/rithubaran-g-7994a92a7/" target="_blank" rel="noopener noreferrer" class="contact-link">
+                <span class="contact-link-label">LinkedIn</span>
+                linkedin.com/in/rithubaran-g-7994a92a7
+              </a>
+            </div>
+          </div>
+
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label class="form-label" for="name">Name</label>
+              <input id="name" class="form-input" type="text" placeholder="Your name" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email">Email</label>
+              <input id="email" class="form-input" type="email" placeholder="your@email.com" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">Message</label>
+              <textarea id="message" class="form-textarea" placeholder="Tell me about the opportunity or project..." required></textarea>
+            </div>
+
+            <button class="btn-primary" type="submit">Send Message</button>
+            <p id="formStatus" class="project-note" aria-live="polite"></p>
+          </form>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Rithubaran G. All rights reserved.</p>
+    <p>Python · AI · Automation · B2B Solutions</p>
+  </footer>
+
+  <script>
+    // Mobile navigation
+    const menuBtn = document.querySelector(".menu-btn");
+    const navLinks = document.querySelector(".nav-links");
+
+    menuBtn.addEventListener("click", () => {
+      const open = navLinks.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", open);
+      menuBtn.textContent = open ? "×" : "☰";
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.textContent = "☰";
+      });
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add("visible"), index * 70);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // Contact form
+    // Opens the user's email client with a pre-filled message.
+    const contactForm = document.getElementById("contactForm");
+    const formStatus = document.getElementById("formStatus");
+
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      const subject = encodeURIComponent("Portfolio Contact from " + name);
+      const body = encodeURIComponent(
+        "Name: " + name + "\n" +
+        "Email: " + email + "\n\n" +
+        message
+      );
+
+      window.location.href =
+        "mailto:rithubaran1995@gmail.com?subject=" + subject + "&body=" + body;
+
+      formStatus.textContent = "Opening your email application…";
+    });
+  </script>
+</body>
+</html>
